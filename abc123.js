@@ -111,4 +111,3 @@
   document.body.appendChild(script);
 })();
 
-})();
