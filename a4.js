@@ -1,14 +1,12 @@
-/* a3.js — модуль «выдели-и-заскринь» */
 await import('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js');
-const html2canvas = window.html2canvas;   // UMD → window
+const html2canvas = window.html2canvas;  
 
 let p1 = null, p2 = null, marker, frame;
-const Z = 2147483647;                     // поверх всего
+const Z = 2147483647;                   
 const reset = () => { p1 = p2 = null; marker?.remove(); frame?.remove(); };
-window.resetCapture = reset;              // ручной сброс
+window.resetCapture = reset;             
 
 document.addEventListener('click', async e => {
-  /* ---------- первая точка ---------- */
   if (!p1) {
     p1 = [e.clientX, e.clientY];
 
@@ -23,7 +21,6 @@ document.addEventListener('click', async e => {
     return;
   }
 
-  /* ---------- вторая точка ---------- */
   p2 = [e.clientX, e.clientY];
   const [x1, y1] = [Math.min(p1[0], p2[0]), Math.min(p1[1], p2[1])];
   const [x2, y2] = [Math.max(p1[0], p2[0]), Math.max(p1[1], p2[1])];
@@ -55,9 +52,7 @@ document.addEventListener('click', async e => {
       `
     });
     document.body.append(img);
-    setTimeout(() => img.remove(), 3000);   // auto-hide
-    // хочешь в новой вкладке — раскомментируй ↓
-    // window.open(img.src, '_blank');
+    setTimeout(() => img.remove(), 3000);  
   } catch (err) {
     console.error('Screenshot failed:', err);
   }
