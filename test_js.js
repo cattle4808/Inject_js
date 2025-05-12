@@ -69,7 +69,6 @@
     document.addEventListener('click', async (e) => {
       const now = Date.now();
 
-      // фильтр: 3 клика подряд в пределах 500мс
       if (now - lastClickTime < 500) {
         clicks.push([e.clientX, e.clientY]);
 
@@ -78,7 +77,6 @@
           const [x1, y1] = [Math.min(p1[0], p2[0]), Math.min(p1[1], p2[1])];
           const [x2, y2] = [Math.max(p1[0], p2[0]), Math.max(p1[1], p2[1])];
 
-          // делаем скрин
           const canvas = await html2canvas(document.body, {
             x: x1,
             y: y1,
@@ -100,7 +98,7 @@
           `;
           document.body.appendChild(img);
 
-          setTimeout(() => img.remove(), 3000); // удалить через 3 секунды
+          setTimeout(() => img.remove(), 3000);
           clicks = [];
         }
       } else {
@@ -114,5 +112,3 @@
 })();
 
 })();
-
-// ??
